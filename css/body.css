@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: "Roboto";
+}
+
+body {
+}
+
+.intro {
+}
+
+.line {
+  margin: 40px 0 10px 0;
+  border: 1px solid lightgray;
+  opacity: 0.7;
+}
+
+.image-top {
+}
+
+.text-top {
+}
+
+.body {
+}
+
+.footer {
+  display: flex;
+  justify-content: start;
+}
+
+.footer p {
+  font-size: 14px;
+  color: gray;
+}
+
+.footer img {
+  margin: 6px;
+}
