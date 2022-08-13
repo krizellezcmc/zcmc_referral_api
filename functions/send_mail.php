@@ -1,9 +1,8 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
 
-    function sendmail($to, $body){
+    function sendmail($to, $body, $subject){
         $name = "Zamboanga City Medica Center - Referral System";  // Name
-        $subject = "Account Registration";
         $from = "zcmc.referral@gmail.com";  // Email
         $password = "jqrznxcnmwwjbzzf";  // Password
 

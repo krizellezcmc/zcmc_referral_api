@@ -36,7 +36,7 @@ switch($method) {
             $stmt->bind_param("sssssii", $firstName, $lastName, $contact, $email, $hashed, $hospitalCode, $accessCode);
                 
             if($stmt->execute()) {
-                sendmail($email, body($firstName));
+                sendmail($email, body($firstName), "Account Registration");
                 $data = ['status' => 1, 'message' => "Successful registration."];
             } else {
                 $data = ['status' => 0, 'message' => "Registration failed."];
