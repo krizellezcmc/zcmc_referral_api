@@ -5,7 +5,7 @@ function body($firstName) {
     style="
         display: flex;
         justify-content: center;
-        margin-top: 50px;
+        margin-top: 10px;
         font-family: Arial Light;
     "
     >

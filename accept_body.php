@@ -1,6 +1,6 @@
 <?php 
-function decline_body($firstName) {
-    $decline_body = '
+function accept($firstName) {
+    $accept = '
     <body
     style="
         display: flex;
@@ -29,12 +29,13 @@ function decline_body($firstName) {
 
         <div class="body" style="font-size: 14px; font-weight: light">
         <p>
-            We would like to inform you that your account verification has been declined.
+            We would like to inform you that your account has been verified.
         </p>
 
         <p>
-            Kindly check your access code to get verified.
+            You can now log in using your credentials. Thank you!
         </p>
+
         <p>
             If you have questions, you may contact us at
             zcmc.referral@gmail.com
@@ -55,7 +56,7 @@ function decline_body($firstName) {
     </div>
     </body>';
 
-    return $decline_body;
+    return $accept;
  
 }
 

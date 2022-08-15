@@ -1,0 +1,5 @@
+URL = https://opensheet.elk.sh/1oDT5VTWSfpUsVqV_514_Okp2j5Z0A4XScFwxSsJK0Rg/data_api
+
+NOTE: 
+
+Responses are cached for 30 seconds in order to improve performance and to avoid hitting Google Sheets’ rate limits, so it might take up to 30 seconds for fresh edits to show up in the API response.
