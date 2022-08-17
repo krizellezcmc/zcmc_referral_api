@@ -24,11 +24,11 @@ switch($method) {
         $checkEmail = $db->prepare("SELECT * FROM users WHERE email = ?;");
         $checkEmail->bind_param("s", $email);
         $checkEmail->execute();
-        $res = $stmt->get_result();
-            
+        $res = $checkEmail->get_result();
+        
         if (mysqli_num_rows($res) > 0) {
 
-            $data = ['status' => 0, 'message' => "Email exist."];
+            $data = ['status' => 2, 'message' => "Email exist."];
 
         } else {
 

@@ -7,7 +7,7 @@ switch($method){
     case 'GET':
 
 
-        $sql = "SELECT * FROM users INNER JOIN hospitals on users.FK_hospitalId = hospitals.PK_hospitalId WHERE users.userId = ? ";
+        $sql = "SELECT * FROM users INNER JOIN bizbox_hospital hospital  on users.FK_hospitalId = hospital.PK_hospitalId WHERE users.userId = ? ";
 
         $stmt = $db->prepare($sql);
         $stmt->bind_param('i', $_GET['Id']);

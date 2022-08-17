@@ -10,7 +10,7 @@ $method = $_SERVER['REQUEST_METHOD'];
             $email = $user->email;
             $password = $user->password;
         
-            $stmt = $db->prepare("SELECT * FROM users u INNER JOIN hospitals h ON u.FK_hospitalId = h.PK_hospitalId WHERE email = ?;");
+            $stmt = $db->prepare("SELECT * FROM users u INNER JOIN bizbox_hospital h ON u.FK_hospitalId = h.PK_hospitalId WHERE email = ?;");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
