@@ -2,10 +2,10 @@
 
 include '../connection/config.php';
 
-$password = "ref@2022";
+$password = "ipcc_user";
 $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-$userId = 1;
+$userId = 122;
 
 
 $stmt = $db->prepare("UPDATE users set password = ? WHERE userId = ?");
