@@ -8,9 +8,8 @@ $method = $_SERVER['REQUEST_METHOD'];
         case 'POST':
             $data = json_decode(file_get_contents('php://input'));
 
-          
           $patientId = $data->patientId;
-          $patientId = $data->username;
+          $username = $data->username;
           $refFacility = $data->referringFacility;
           $lastname = $data->lastname;
           $firstname = $data->firstname;
@@ -56,8 +55,7 @@ $method = $_SERVER['REQUEST_METHOD'];
             $stmt = $db->prepare("INSERT INTO `temp_referral` (`patientId`, `username`, `refFacility`, `lastname`, `firstname`, `middleName`, `extended`, `sex`, `birthdate`, `age`, `civilStatus`, `nationality`, `religion`, `occupation`, `philhealth`, `address`, `nextOfkin`, `contactWatcher`, `dateAdmitted`, `refType`, `disposition`, `specialization`, `latestTemp`, `latestBp`, `latestRespi`, `latestPulse`, `latestOxygen`, `latestGlasgow`, `chiefComplaints`, `diagnosis`, `endorsement`, `userContact`, `reason`, `GP`, `LMP`, `AOG`, `EDC`, `FHT`, `FH`, `APGAR`, `IE`, `bow`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ? );");
 
             $stmt->bind_param("sssssssssssssssssssssssssssssssssssssssssss", 
-            $patientId, $patientId, $refFacility, $lastname, $firstname, $middlename, $extendedName, $sex, $birthdate, $age, $civilStatus,
-          $nationality ,$religion ,$occupation ,$philhealth ,$address , $nextOfKin ,$contact ,$dateAdmitted ,$referralType ,$disposition ,$specialization,$temperature ,$bloodPressure ,$respiRate ,$pulseRate , $oxygen ,$glasgow , $chiefComplaints ,$diagnosis ,$endorsement , $userContact ,$reason ,       $newGp, $lmp, $aog, $edc, $fht, $th, $newIe, $apgar, $newBowList, $status);
+            $patientId, $username, $refFacility, $lastname, $firstname, $middlename, $extendedName, $sex, $birthdate, $age, $civilStatus, $nationality ,$religion ,$occupation ,$philhealth ,$address , $nextOfKin ,$contact ,$dateAdmitted ,$referralType ,$disposition ,$specialization,$temperature ,$bloodPressure ,$respiRate ,$pulseRate , $oxygen ,$glasgow , $chiefComplaints ,$diagnosis ,$endorsement , $userContact ,$reason ,       $newGp, $lmp, $aog, $edc, $fht, $th, $newIe, $apgar, $newBowList, $status);
             
             if($stmt->execute()){
                 $data = ['status' => 1, 'message' => "Record successfully created"];
