@@ -1,13 +1,20 @@
 <?php
+include '../connection/config.php';
 
-    header('Access-Control-Allow-Origin: *');
-    header("Access-Control-Allow-Headers: *");
-    
-    // $url = "http://gsx2json.com/api?id=1oDT5VTWSfpUsVqV_514_Okp2j5Z0A4XScFwxSsJK0Rg&sheet=data_api&columns=false";
-    $url = "https://opensheet.elk.sh/1oDT5VTWSfpUsVqV_514_Okp2j5Z0A4XScFwxSsJK0Rg/data_api";
+$method = $_SERVER['REQUEST_METHOD'];
 
-    $data = file_get_contents($url);
-    $result = json_decode($data);
+switch($method){
+    case 'GET':
 
-    echo json_encode($result);  
+        $sql = "SELECT * FROM temp_referral";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+
+        $data = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        echo json_encode($data);
+        break;
+}
+
 ?>
