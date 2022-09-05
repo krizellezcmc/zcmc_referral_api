@@ -9,7 +9,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
             $id = $_GET['id'];
 
-            $stmt = $db->prepare("SELECT * from temp_referral WHERE status ='pending' AND patientId = ?");
+            $stmt = $db->prepare("SELECT * from temp_referral WHERE patientId = ?");
             $stmt->bind_param('s', $id);
             $stmt->execute();
             $patientPending = $stmt->get_result()->fetch_array(MYSQLI_ASSOC);

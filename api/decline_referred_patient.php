@@ -13,7 +13,7 @@ $method = $_SERVER['REQUEST_METHOD'];
             $reason = $patientRef->reason;
 
                 // UPDATE VALIDATION 
-                $stmt = $db->prepare("UPDATE temp_referral SET status = 'declined', rejectReason=? WHERE patientId = ?");
+                $stmt = $db->prepare("UPDATE temp_referral SET status = 'declined', rejectReason = ?, timestamp = CURRENT_TIMESTAMP() WHERE patientId = ?");
                 $stmt->bind_param("ss", $reason, $id);
                 if($stmt->execute()){
                     $data = ['status' => 1, 'message' => "Success"];
