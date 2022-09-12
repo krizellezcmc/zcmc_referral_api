@@ -33,6 +33,7 @@ switch($method) {
         $needBring = $details->needBring;
         $time = $details->time;
         $health =  $details->diet;
+        $healthOthers = $details->healthOthers;
         $medications = $details->medications;
         $diet = $details->diet;
         $othersDiet = $details->othersDiet;
@@ -71,20 +72,24 @@ switch($method) {
         }
 
 
-        $stmt = $db->prepare("INSERT INTO tagubilin (PK_tagubilinId, patientName, age, sex, `address`, ward, hrn, admissionDate, dischDate, disch_diagnosis, operation, surgeon, operationDate, FK_resultId, FK_medicationId, FK_breastfeedId, health, instructions, FK_followId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO tagubilin (PK_tagubilinId, patientName, age, sex, `address`, ward, hrn, admissionDate, dischDate, disch_diagnosis, operation, surgeon, operationDate, FK_resultId, FK_medicationId, FK_breastfeedId, health, healthOthers, instructions, FK_followId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        $stmt->bind_param("isssssissssssiiissi", $patRegister, $patientName, $age, $sex, $address, $ward, $hrn, $admissionDate, $dischDate, $dischDiag, $operation, $surgeon, $operationDate, $resultId, $medId, $bfeedId, $health, $instructions, $followupId);
+        $stmt->bind_param("isssssissssssiiisssi", $patRegister, $patientName, $age, $sex, $address, $ward, $hrn, $admissionDate, $dischDate, $dischDiag, $operation, $surgeon, $operationDate, $resultId, $medId, $bfeedId, $health, $healthOthers,  $instructions, $followupId);
         
+        $updateTagubilin= $db->prepare('UPDATE patient set tagubilin = 1 WHERE FK_psPatRegisters = ?');
+        $updateTagubilin->bind_param('i', $patRegister);
         
+
         if($stmt->execute()) {
+            $updateTagubilin->execute();
             $data = ['status' => 1, 'message' => "success"];
         } else {
             $data = ['status' => 0, 'message' => "failed"];
         }
 
-
     echo json_encode($data);
     break; 
+
 }
 
 ?>
