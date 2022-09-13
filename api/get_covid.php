@@ -16,6 +16,6 @@ $method = $_SERVER['REQUEST_METHOD'];
         $res = $result->fetch_array(MYSQLI_ASSOC);
 
         echo json_encode($res);
-    }
+    }   
 
 ?>

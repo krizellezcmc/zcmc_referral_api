@@ -6,7 +6,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch($method){
     case 'GET':
 
-        $sql = "SELECT * FROM temp_referral WHERE status='accepted'";
+        $sql = "SELECT * FROM temp_referral WHERE status='arrived'";
 
         $stmt = $db->prepare($sql);
         $stmt->execute();
