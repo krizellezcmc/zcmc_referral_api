@@ -1,5 +1,7 @@
 <?php
 include '../connection/config.php';
+include '../functions/auth.php'; 
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -15,7 +17,11 @@ switch($method){
 
         $user = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        echo json_encode($user);
+         if($access === true) {
+            echo json_encode($user);    
+        } else {
+            echo "Unathorized";
+        }
         break;
 }
 

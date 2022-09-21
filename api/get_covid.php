@@ -1,6 +1,7 @@
 <?php
 
 include '../connection/config.php';
+include '../functions/auth.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -15,7 +16,11 @@ $method = $_SERVER['REQUEST_METHOD'];
         $result = $getDetails->get_result();
         $res = $result->fetch_array(MYSQLI_ASSOC);
 
-        echo json_encode($res);
+         if($access === true) {
+                echo json_encode($res);    
+            } else {
+                echo "Unathorized";
+            }
     }   
 
 ?>
