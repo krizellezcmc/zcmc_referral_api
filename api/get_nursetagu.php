@@ -13,9 +13,9 @@ switch($method){
         $stmt = $db->prepare($sql);
         $stmt->bind_param('i', $id);
         $stmt->execute();
-        $response = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $data = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        echo json_encode($response);
+        echo json_encode($data);
         break;
 }
 

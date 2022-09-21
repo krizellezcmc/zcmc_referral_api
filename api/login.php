@@ -1,11 +1,11 @@
 <?php
-
 include '../connection/config.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
     switch($method) {
         case 'POST':
+
             $user = json_decode(file_get_contents('php://input'));
             $email = $user->email;
             $password = $user->password;
@@ -20,12 +20,15 @@ $method = $_SERVER['REQUEST_METHOD'];
                 while ($user = mysqli_fetch_assoc($result)) {
                     if(password_verify($password, $user['password'])) {
                         // IF TAMA PASSWORD
-                        if($user['validated'] === 1){
-
+                        if($user['validated'] === 1){                           
                             $stmt = $db->prepare("UPDATE users SET validated = 1, attempt = 0 WHERE email = ?;");
                             $stmt->bind_param("s", $email);
                             $stmt->execute();
-                            $data = ['status' => 1, 'loggedIn' => true, "user" => $user];
+                            $session_id = session_create_id();
+                            $_SESSION['session_id'] = $session_id;
+                            // setcookie('session_id', $session_id, time() + (86400 * 30), "/");
+                            
+                            $data = ['status' => 1, 'loggedIn' => true, "user" => $user, 'session_id' => $_SESSION['session_id']];
 
                         } else if($user['validated'] === 0) {
                             $data = ['status' => 3, 'message' => "Request pending"];

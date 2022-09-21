@@ -1,6 +1,7 @@
 <?php
 
 include '../connection/config.php';
+include '../functions/auth.php'; 
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -10,7 +11,12 @@ $method = $_SERVER['REQUEST_METHOD'];
             $stmt->execute();
             $userVerify = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-            echo json_encode($userVerify);
+            if($access === true) {
+                echo json_encode($userVerify);    
+            } else {
+                echo "Unathorized";
+            }
+
             break;
 }
 
