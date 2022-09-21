@@ -13,9 +13,3 @@
         die("ERROR: Could not connect. " . mysqli_connect_error());
     }
 
-
-<<<<<<< HEAD
-?>
-=======
-?>
->>>>>>> 307fcb3be8fe0d53a3ba68002c067c3dfea4c9c6
