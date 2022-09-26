@@ -27,9 +27,9 @@ function body($firstName) {
         Hello, '.$firstName.'!
         </p>
 
-        <div class="body" style="font-size: 14px; font-weight: light">
+        <div class="body" style="font-size: 14px; font-weight: light; text-align:justify;">
         <p>
-            Welcome to Zamboanga City Medical Center. You have successfully
+            Welcome to One Hospital Command Referral System. You have successfully
             registered an account.
         </p>              
 

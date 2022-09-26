@@ -18,6 +18,13 @@ switch($method) {
         $hashed = password_hash($user->password, PASSWORD_DEFAULT);
         $hospitalCode = $user->hospitalCode;
         $accessCode = $user->accessCode;
+        $department = $user->department;
+
+        if($hospitalCode==1){
+            $role="opcen";
+        }else {
+            $role="user";
+        }
 
 
         // Check if email exist
@@ -31,9 +38,10 @@ switch($method) {
             $data = ['status' => 2, 'message' => "Email exist."];
 
         } else {
+            
 
-            $stmt = $db->prepare("insert into users(firstName, lastName, contact, email, password, FK_hospitalId, accessCode) values (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssii", $firstName, $lastName, $contact, $email, $hashed, $hospitalCode, $accessCode);
+            $stmt = $db->prepare("insert into users(firstName, lastName, contact, email, password, role, FK_hospitalId, accessCode, department) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssiis", $firstName, $lastName, $contact, $email, $hashed, $role,$hospitalCode, $accessCode, $department);
                 
             if($stmt->execute()) {
                 sendmail($email, body($firstName), "Account Registration");
