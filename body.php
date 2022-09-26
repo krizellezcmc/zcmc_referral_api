@@ -23,7 +23,7 @@ function body($firstName) {
            
             margin-bottom: 30px;
         "
-        >
+        >                 
         Hello, '.$firstName.'!
         </p>
 
@@ -31,10 +31,10 @@ function body($firstName) {
         <p>
             Welcome to Zamboanga City Medical Center. You have successfully
             registered an account.
-        </p>
+        </p>              
 
         <p>
-            You may <a href="http://192.168.3.135:3000/">login here</a> to check
+            You may <a href="https://zcmc-referral.vercel.app/">login here</a> to check
             your account status.
         </p>
         <p>
