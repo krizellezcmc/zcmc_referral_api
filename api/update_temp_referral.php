@@ -8,7 +8,6 @@ $method = $_SERVER['REQUEST_METHOD'];
         case 'POST':
             $data = json_decode(file_get_contents('php://input'));
 
-         $timeStamp = $data->timeStamp;
           $patientId = $data->patientId;
           $username = $data->username;
           $refFacility = $data->referringFacility;
@@ -42,21 +41,18 @@ $method = $_SERVER['REQUEST_METHOD'];
           $endorsement = $data->endorsement;
           $userContact = $data->userContact;
           $reason = $data->reason;
-          $newGp = $data->newGp;
           $lmp = $data->lmp;
           $aog = $data->aog;
           $edc = $data->edc;
           $fht = $data->fht;
           $th = $data->fh;
           $apgar = $data->apgar;
-          $newIe = $data->newIe;
-          $newBowList = $data->newBowList;
           $status = "pending";
             
-            $stmt = $db->prepare("UPDATE temp_referral SET tstamp = ?, username = ?, refFacility = ?, lastname = ?, firstname = ?, middleName = ?, extended = ?, sex = ?, birthdate = ?, age = ?, civilStatus = ?, nationality = ?, religion = ?, occupation = ?, philhealth = ?, `address` = ?, nextOfkin = ?, contactWatcher = ?, dateAdmitted = ?, refType = ?, disposition = ?, specialization = ?, latestTemp = ?, latestBp = ?, latestRespi = ?, latestPulse = ?, latestOxygen = ?, latestGlasgow = ?, chiefComplaints = ?, diagnosis = ?, endorsement = ?, userContact = ?, reason = ?, GP = ?, LMP = ?, AOG = ?, EDC = ?, FHT = ?, FH = ?, APGAR = ?, IE = ?, bow = ?, `status` = ? WHERE patientId=? ");
+            $stmt = $db->prepare("UPDATE temp_referral SET  username = ?, refFacility = ?, lastname = ?, firstname = ?, middleName = ?, extended = ?, sex = ?, birthdate = ?, age = ?, civilStatus = ?, nationality = ?, religion = ?, occupation = ?, philhealth = ?, `address` = ?, nextOfkin = ?, contactWatcher = ?, dateAdmitted = ?, refType = ?, disposition = ?, specialization = ?, latestTemp = ?, latestBp = ?, latestRespi = ?, latestPulse = ?, latestOxygen = ?, latestGlasgow = ?, chiefComplaints = ?, diagnosis = ?, endorsement = ?, userContact = ?, reason = ?, LMP = ?, AOG = ?, EDC = ?, FHT = ?, FH = ?, APGAR = ?, `status` = ?, `timestamp` = CURRENT_TIMESTAMP() WHERE patientId=? ");
 
-            $stmt->bind_param("ssssssssssssssssssssssssssssssssssssssssssss", 
-            $timeStamp,  $username, $refFacility, $lastname, $firstname, $middlename, $extendedName, $sex, $birthdate, $age, $civilStatus, $nationality ,$religion ,$occupation ,$philhealth ,$address , $nextOfKin ,$contact ,$dateAdmitted ,$referralType ,$disposition ,$specialization,$temperature ,$bloodPressure ,$respiRate ,$pulseRate , $oxygen ,$glasgow , $chiefComplaints ,$diagnosis ,$endorsement , $userContact ,$reason ,       $newGp, $lmp, $aog, $edc, $fht, $th, $newIe, $apgar, $newBowList, $status, $patientId);
+            $stmt->bind_param("ssssssssssssssssssssssssssssssssssssssss", 
+            $username, $refFacility, $lastname, $firstname, $middlename, $extendedName, $sex, $birthdate, $age, $civilStatus, $nationality ,$religion ,$occupation ,$philhealth ,$address , $nextOfKin ,$contact ,$dateAdmitted ,$referralType ,$disposition ,$specialization,$temperature ,$bloodPressure ,$respiRate ,$pulseRate , $oxygen ,$glasgow , $chiefComplaints ,$diagnosis ,$endorsement , $userContact ,$reason , $lmp, $aog, $edc, $fht, $th, $apgar, $status, $patientId);
             
             if($stmt->execute()){
                 $data = ['status' => 1, 'message' => "Record successfully created"];
