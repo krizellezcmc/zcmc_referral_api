@@ -36,7 +36,6 @@ switch($method) {
         $healthOthers = $details->healthOthers;
         $medications = $details->medications;
         $diet = $details->diet;
-        $othersDiet = $details->othersDiet;
         $instructions =  $details->instructions;
         $breastfeed = $details->breastfeed;
         $ob = $details->ob;
