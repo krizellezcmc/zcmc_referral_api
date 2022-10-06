@@ -16,7 +16,6 @@ $method = $_SERVER['REQUEST_METHOD'];
             $stmt->bind_param("sis", $patientId, $referredTo, $reason);
             
             if($stmt->execute()){
-
                 $update = $db->prepare("UPDATE temp_referral set currentHospital = ?, status = 'referred' WHERE patientId = ?");
                 $update->bind_param("is", $referredTo, $patientId);
 
