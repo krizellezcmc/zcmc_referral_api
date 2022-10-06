@@ -10,10 +10,12 @@ $method = $_SERVER['REQUEST_METHOD'];
         case 'POST':
             $patientRef = json_decode(file_get_contents('php://input'));
             $patId = $patientRef->patId;
+            $routeId = $patientRef->routeId;
 
-                // UPDATE VALIDATION 
-                $stmt = $db->prepare("UPDATE temp_referral SET status = 'referred', timestamp = CURRENT_TIMESTAMP() WHERE patientId = ?");
-                $stmt->bind_param("s", $patId); 
+            
+                $stmt = $db->prepare("UPDATE routes SET status = 'accepted', update_tstamp = CURRENT_TIMESTAMP() WHERE PK_routeId = ?");
+                $stmt->bind_param("i", $routeId); 
+                
                 if($stmt->execute()){
                     $data = ['status' => 1, 'message' => "Success"];
                 }else {
