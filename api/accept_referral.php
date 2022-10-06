@@ -9,12 +9,11 @@ $method = $_SERVER['REQUEST_METHOD'];
     switch($method) {
         case 'POST':
             $patientRef = json_decode(file_get_contents('php://input'));
-            $id = $patientRef->id;
-            $reason = $patientRef->reason;
+            $patId = $patientRef->patId;
 
                 // UPDATE VALIDATION 
-                $stmt = $db->prepare("UPDATE routes SET reason = ?, status = 'refused', update_tstamp = CURRENT_TIMESTAMP() WHERE PK_routeId = ?");
-                $stmt->bind_param("si", $reason, $id);
+                $stmt = $db->prepare("UPDATE temp_referral SET status = 'referred', timestamp = CURRENT_TIMESTAMP() WHERE patientId = ?");
+                $stmt->bind_param("s", $patId); 
                 if($stmt->execute()){
                     $data = ['status' => 1, 'message' => "Success"];
                 }else {

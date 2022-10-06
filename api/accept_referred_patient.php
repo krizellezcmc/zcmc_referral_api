@@ -13,7 +13,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
                 // UPDATE VALIDATION 
                 $stmt = $db->prepare("UPDATE temp_referral SET status = 'accepted', timestamp = CURRENT_TIMESTAMP() WHERE patientId = ?");
-                $stmt->bind_param("s", $patId);
+                $stmt->bind_param("s", $patId); 
                 if($stmt->execute()){
                     $data = ['status' => 1, 'message' => "Success"];
                 }else {
