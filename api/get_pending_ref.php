@@ -15,7 +15,6 @@ $method = $_SERVER['REQUEST_METHOD'];
             $stmt->execute();
             $patientPending = $stmt->get_result()->fetch_array(MYSQLI_ASSOC);
 
-
             if($access === true) {
                 echo json_encode($patientPending);    
             } else {

@@ -7,7 +7,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch($method){
     case 'GET':
 
-        $sql = "SELECT * FROM temp_referral WHERE refFacility = ?";
+        $sql = "SELECT * FROM temp_referral temp LEFT JOIN bizbox_hospital b ON temp.currentHospital = b.PK_hospitalId WHERE refFacility = ?";
         $stmt = $db->prepare($sql);
         $stmt->bind_param('s', $_GET['hospital']);
         $stmt->execute();

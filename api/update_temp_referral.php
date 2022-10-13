@@ -52,12 +52,12 @@ $method = $_SERVER['REQUEST_METHOD'];
           $ivf = $data->ivf;
           $meds = $data->meds;
           $lab = $data->lab;
-          $status = "pending";
-            
-            $stmt = $db->prepare("UPDATE temp_referral SET  username = ?, refFacility = ?, lastname = ?, firstname = ?, middleName = ?, extended = ?, sex = ?, birthdate = ?, age = ?, civilStatus = ?, nationality = ?, religion = ?, occupation = ?, philhealth = ?, `address` = ?, nextOfkin = ?, contactWatcher = ?, dateAdmitted = ?, refType = ?, disposition = ?, specialization = ?, latestTemp = ?, latestBp = ?, latestRespi = ?, latestPulse = ?, latestOxygen = ?, latestGlasgow = ?, chiefComplaints = ?, diagnosis = ?, endorsement = ?, userContact = ?, reason = ?, LMP = ?, AOG = ?, EDC = ?, FHT = ?, FH = ?, APGAR = ?, HPI = ?, PPF = ?, IVF = ?, MEDS = ?, LAB = ?, `status` = ?, `timestamp` = CURRENT_TIMESTAMP() WHERE patientId=? ");
 
-            $stmt->bind_param("sssssssssssssssssssssssssssssssssssssssssssss", 
-            $username, $refFacility, $lastname, $firstname, $middlename, $extendedName, $sex, $birthdate, $age, $civilStatus, $nationality ,$religion ,$occupation ,$philhealth ,$address , $nextOfKin ,$contact ,$dateAdmitted ,$referralType ,$disposition ,$specialization,$temperature ,$bloodPressure ,$respiRate ,$pulseRate , $oxygen ,$glasgow , $chiefComplaints ,$diagnosis ,$endorsement , $userContact ,$reason , $lmp, $aog, $edc, $fht, $th, $apgar, $hpi, $ppf, $ivf, $meds, $lab, $status, $patientId);
+            
+            $stmt = $db->prepare("UPDATE temp_referral SET  username = ?, refFacility = ?, lastname = ?, firstname = ?, middleName = ?, extended = ?, sex = ?, birthdate = ?, age = ?, civilStatus = ?, nationality = ?, religion = ?, occupation = ?, philhealth = ?, `address` = ?, nextOfkin = ?, contactWatcher = ?, dateAdmitted = ?, refType = ?, disposition = ?, specialization = ?, latestTemp = ?, latestBp = ?, latestRespi = ?, latestPulse = ?, latestOxygen = ?, latestGlasgow = ?, chiefComplaints = ?, diagnosis = ?, endorsement = ?, userContact = ?, reason = ?, LMP = ?, AOG = ?, EDC = ?, FHT = ?, FH = ?, APGAR = ?, HPI = ?, PPF = ?, IVF = ?, MEDS = ?, LAB = ?, `timestamp` = CURRENT_TIMESTAMP() WHERE patientId=? ");
+
+            $stmt->bind_param("ssssssssssssssssssssssssssssssssssssssssssss", 
+            $username, $refFacility, $lastname, $firstname, $middlename, $extendedName, $sex, $birthdate, $age, $civilStatus, $nationality ,$religion ,$occupation ,$philhealth ,$address , $nextOfKin ,$contact ,$dateAdmitted ,$referralType ,$disposition ,$specialization,$temperature ,$bloodPressure ,$respiRate ,$pulseRate , $oxygen ,$glasgow , $chiefComplaints ,$diagnosis ,$endorsement , $userContact ,$reason , $lmp, $aog, $edc, $fht, $th, $apgar, $hpi, $ppf, $ivf, $meds, $lab, $patientId);
             
             if($stmt->execute()){
                 $data = ['status' => 1, 'message' => "Record successfully created"];
