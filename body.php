@@ -34,7 +34,7 @@ function body($firstName) {
         </p>              
 
         <p>
-            You may <a href="https://zcmc-referral.vercel.app/">login here</a> to check
+            You may <a href="https://one-hospital-command.vercel.app/">login here</a> to check
             your account status.
         </p>
         <p>
